@@ -3,6 +3,8 @@ import { router } from './router'
 import { createPinia } from 'pinia'
 import App from './App.vue'
 
+import { attemptLoginOnPageLoad } from './modules/auth/services/attempt-login-on-page-load'
+
 import { registerModules } from './register-modules'
 import authModule from './modules/auth'
 registerModules({
@@ -12,4 +14,7 @@ registerModules({
 const app = createApp(App)
 app.use(createPinia())
 app.use(router)
-app.mount('#app')
+attemptLoginOnPageLoad().then(() => {
+    app.use(router)
+    app.mount('#app')
+})

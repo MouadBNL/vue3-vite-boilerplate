@@ -13,6 +13,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { router } from "@/router"
 import { useAuthStore } from '../store/auth-store'
 
 const auth = useAuthStore()
@@ -25,7 +26,7 @@ const sendLoginRequest = () => {
         email: email.value,
         password: password.value
     }).then((res) => {
-
+        router.push({name: 'auth.auth'})
     })
     .catch((err) => {
         console.log({err})

@@ -1,5 +1,8 @@
 import { RouteRecordRaw } from "vue-router"
 import Module from './Module.vue'
+import checkMiddlewares from "@/middlwares"
+import auth from "@/middlwares/auth"
+import guest from "@/middlwares/guest"
 /**
  * Pages
  */
@@ -11,6 +14,9 @@ export const router: RouteRecordRaw[] = [
         path: '/login',
         component: LoginPage,
         name: 'auth.login',
+        beforeEnter: (to, from, next) => {
+            return checkMiddlewares({to, from, next}, [guest])
+        }
     },
     // {
     //     path: '/register',
@@ -20,6 +26,9 @@ export const router: RouteRecordRaw[] = [
     {
         path: '/auth',
         component: Module,
+        beforeEnter: (to, from, next) => {
+            return checkMiddlewares({to, from, next}, [auth])
+        },
         children: [
             {
                 path: '',

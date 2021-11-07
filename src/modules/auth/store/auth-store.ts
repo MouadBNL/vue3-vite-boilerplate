@@ -76,7 +76,6 @@ export const useAuthStore = defineStore('auth',{
 
             this.user = data.value
             this.token = token
-            router.push({name: 'auth.auth'})
         },
 
         async logout() {
