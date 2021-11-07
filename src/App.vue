@@ -1,13 +1,10 @@
 <template>
-	<div>
-		<div>
-			<router-link :to="{name: 'home'}">home</router-link>
-			<router-link :to="{name: 'about'}">about</router-link>
-		</div>
+	<TheBaseLayout>
 		<router-view></router-view>
-	</div>
+	</TheBaseLayout>
 </template>
 
 <script setup lang="ts">
+import TheBaseLayout from './layouts/base/TheBaseLayout.vue';
 
 </script>
