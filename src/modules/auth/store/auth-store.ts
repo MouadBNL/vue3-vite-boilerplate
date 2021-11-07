@@ -85,6 +85,40 @@ export const useAuthStore = defineStore('auth',{
                 this.user = null
                 router.push({name: 'home'})
             })
+        },
+
+        async register(credentials: {name: string, email: string, password: string, password_confimration: string}) {
+            const { data, fetch, error } = useAxios<LoginResponse>(authConfig.registerEndpoint, {
+                method: 'post',
+                data: {
+                    name: credentials.name,
+                    email: credentials.email,
+                    password: credentials.password,
+                    "password_confirmation": credentials.password_confimration
+                }
+            })
+
+            await fetch().catch((err) => {
+                if(err.response){
+                    if(err.response.status && err.response.status == 401){
+                        throw 'Invalid credentials, try again.'
+                    } else if(err.response.data.message) {
+                        throw err.response.data.message
+                    } else if(err.response.data.error) {
+                        throw err.response.data.error
+                    }
+                }
+                if(err.message){
+                    throw err.message
+                }
+            })
+            if(!(data) || !(data.value)){
+                throw 'Failed to get token, try again.'
+            }
+
+            this.token = data.value.access_token
+
+            return this.attemptAuth(this.token)
         }
     }
 })

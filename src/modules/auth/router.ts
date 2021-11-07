@@ -8,6 +8,7 @@ import guest from "@/middlwares/guest"
  */
 import LoginPage from './views/LoginPage.vue'
 import AuthPage from './views/AuthPage.vue'
+import RegisterPage from './views/RegisterPage.vue'
 
 export const router: RouteRecordRaw[] = [
     {
@@ -18,11 +19,14 @@ export const router: RouteRecordRaw[] = [
             return checkMiddlewares({to, from, next}, [guest])
         }
     },
-    // {
-    //     path: '/register',
-    //     component: RegisterPage,
-    //     name: 'auth.register',
-    // },
+    {
+        path: '/register',
+        component: RegisterPage,
+        name: 'auth.register',
+        beforeEnter: (to, from, next) => {
+            return checkMiddlewares({to, from, next}, [guest])
+        }
+    },
     {
         path: '/auth',
         component: Module,

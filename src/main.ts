@@ -13,7 +13,6 @@ registerModules({
 
 const app = createApp(App)
 app.use(createPinia())
-app.use(router)
 attemptLoginOnPageLoad().then(() => {
     app.use(router)
     app.mount('#app')

@@ -6,6 +6,7 @@
 		</span>
 		<span v-else>
 			<router-link :to="{name: 'auth.login'}">login</router-link>
+			<router-link :to="{name: 'auth.register'}">register</router-link>
 		</span>
 	</div>
 	<TheBaseLayout>
