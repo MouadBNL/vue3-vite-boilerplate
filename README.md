@@ -2,6 +2,7 @@
 
 This is a vue 3 boilerplate that includes:
 - Vue 3 using typescript and Vite
+- Vue router + middleware
 - Pinia store
 - Axios
 - Auth module
