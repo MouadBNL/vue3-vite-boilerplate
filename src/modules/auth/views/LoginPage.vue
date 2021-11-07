@@ -20,6 +20,7 @@ const email = ref('user@host.com')
 const password = ref('password')
 const isLoading = ref(false)
 const sendLoginRequest = () => {
+    isLoading.value = true
     auth.login({
         email: email.value,
         password: password.value
@@ -30,7 +31,7 @@ const sendLoginRequest = () => {
         console.log({err})
     })
     .finally(() => {
-
+        isLoading.value = false
     })
 }
 </script>
