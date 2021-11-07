@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import axios, { AxiosResponse } from "axios"
 
 const apiClinet = axios.create({
-    baseURL: 'http://localhost/api/v1'
+    baseURL: 'http://localhost:8000/api/v1'
 })
 
 export const useAxios = <T = any>(url: string, config: Object= {}) => {
